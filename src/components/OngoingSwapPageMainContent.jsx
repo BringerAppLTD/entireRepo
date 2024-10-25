@@ -86,7 +86,6 @@ export default function OngoingSwapPageMainContent() {
         
         
             const CreateEventRequestData = {
-                address: 'aleo1hdn7ts6e8lpt768gaqz57e4hq8rvmuesfpms7hfes5l886gezs9s3p4wqd', // This can be omitted if the address is not always required
                 type: EventType.Send, // Should be set to a value from EventType
                 programId: 'credits.aleo',
                 functionId: 'transfer_private',
