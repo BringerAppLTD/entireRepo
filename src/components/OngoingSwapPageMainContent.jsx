@@ -90,7 +90,7 @@ export default function OngoingSwapPageMainContent() {
                 programId: 'credits.aleo',
                 functionId: 'transfer_private',
                 fee: 0.053613,
-                inputs: [response.records ? response.records[0] : null, 'aleo1hdn7ts6e8lpt768gaqz57e4hq8rvmuesfpms7hfes5l886gezs9s3p4wqd', '1u64'] // Array of either objects (records) or strings
+                inputs: [response.records ? response.records[0] : null, 'aleo1hdn7ts6e8lpt768gaqz57e4hq8rvmuesfpms7hfes5l886gezs9s3p4wqd', '1000000u64'] // Array of either objects (records) or strings
             };
 
             if (!response.records || response.records.length === 0) {
