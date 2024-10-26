@@ -6,6 +6,7 @@ import {
     getRecords,
     useAccount
 } from '@puzzlehq/sdk';
+import { getEvent } from '@puzzlehq/sdk';
 
 
 var dAppName = "";
@@ -27,6 +28,7 @@ export default function OngoingSwapPageMainContent() {
     const [inputs, setInputs] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
+    const [event, setEvent] = useState();
     const [eventId, setEventId] = useState();
     const [session, setSession] = useState(null); // Initialize session state
     const [success, setSuccess] = useState(false);
@@ -104,6 +106,11 @@ export default function OngoingSwapPageMainContent() {
             setError(createEventResponse.error);
           } else {
             setEventId(createEventResponse.eventId);
+            const report = await getEvent({
+                id: eventId,
+            });
+            setEvent(report.event);
+
           }
         } catch (e) {
           // Catch any errors from either step
@@ -133,7 +140,12 @@ export default function OngoingSwapPageMainContent() {
                             >
                                 {loading ? 'Loading' : 'get records & create event'}
                             </button>
-                            { eventId && <p>event pending: {eventId}</p> }
+                            { eventId && <p>This is the event Id of the just concluded transaction: Id: {eventId}</p> }
+                            {event && (
+                                <div>
+                                <p>The event object: {event}</p>
+                                </div>
+                            )}
                             {error && !loading ? <p>error creating event: {error}</p> : null}
                             <br/>
                             {address && <div><p style={{whiteSpace:'wrap'}}>Wallet address:</p><p style={{fontSize:18}}>{address}</p></div>}
